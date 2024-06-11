@@ -31,8 +31,8 @@ def run_script(args):
                     msg = db.get_message_by_frame_id(can_id)
                     data_bytes = bytes.fromhex(can_data)
                     decoded_signals = msg.decode(data_bytes)
-                    if 'VCU_INV_Torque_Limit_Command' in decoded_signals:
-                        torque_limit_values.append(str(decoded_signals['VCU_INV_Torque_Limit_Command']))
+                    if 'VCU_INV_Torque_Command' in decoded_signals:
+                        torque_limit_values.append(str(decoded_signals['VCU_INV_Torque_Command']))
                 output_file.write(' '.join(torque_limit_values) + '\n')
 
 if __name__ == '__main__':

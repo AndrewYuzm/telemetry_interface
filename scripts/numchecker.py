@@ -1,4 +1,4 @@
-# this code is used to check if the signals in the file are within the range of 10 to 30,
+# This code is used to check if the signals in the file are within the range of 10 to 30,
 # or no difference between the signals. 
 # If the signals are within the range, the code prints 'successed'.
 def check_signals(filename: str):
@@ -7,11 +7,19 @@ def check_signals(filename: str):
             content = file.read().strip()
             numbers = list(map(float, content.split()))
 
-            for i in range(len(numbers) - 1):
-                diff = abs(numbers[i] - numbers[i + 1])
-                if not (10 <= diff <= 30 or diff == 0):
+            i = 1
+            while i < len(numbers) - 1:
+                # Skip if the number or the next number is 1000
+                if abs(numbers[i]) == 1000:
+                    i += 2
+                    continue
+                
+                diff = abs(numbers[i] - numbers[i -1])
+                if not (5 <= diff <= 7 or diff == 0):
                     print('failed')
                     return
+                
+                i += 1
 
             print('successed')
     except FileNotFoundError:
